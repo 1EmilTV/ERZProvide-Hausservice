@@ -6,20 +6,21 @@
         <title>ERZProvide Hausservice</title>
         <link rel="stylesheet" href="style.css" />
         <script src="index.js" defer></script>
+        <link rel="shortcut icon" href="src/logo.png" type="image/png" />
     </head>
     <body>
         <nav>
             <img
-                src="src/logo.png"
+                src="src/logo neu.png"
                 alt="ERZProvide Logo"
                 onclick="location.href='#landing'"
             />
             <ul class="nav-links">
-                <li><a href="#about">Über uns</a></li>
-                <li><span>|</span></li>
                 <li><a href="#services">Dienstleistungen</a></li>
                 <li><span>|</span></li>
-                <li><a href="#">Impressum</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><span>|</span></li>
+                <li><a href="impressum/impressum.html">Impressum</a></li>
             </ul>
             <button class="contact-btn" onclick="location.href='#contact'">
                 Kontakt
@@ -33,13 +34,13 @@
                 Kontaktiere uns!
             </button>
             <div class="socials">
-                <!-- INFO: font awesome svgs erstmal -->
+                <!-- INFO: font awesome svgs, copyrightmäßig ok-->
                 <a href="#"
                     ><img
                         src="/src/instagram-brands-solid-full.svg"
                         alt="Instagram Logo"
                 /></a>
-                <a href="#"
+                <a href="tel:+491729813856"
                     ><img
                         src="/src/whatsapp-brands-solid-full.svg"
                         alt="Whatsapp Logo"
@@ -49,6 +50,121 @@
                         src="/src/facebook-brands-solid-full.svg"
                         alt="Facebook Logo"
                 /></a>
+            </div>
+        </section>
+        <section class="services" id="services">
+            <h2 class="service header">Dienstleistungen</h2>
+            <div class="service">
+                <div class="imges">
+                    <div class="wrapper">
+                        <img
+                            src="https://placehold.co/400x250?text=Before"
+                            alt="Before"
+                            class="before"
+                        />
+                        <div class="after">
+                            <img
+                                src="https://placehold.co/400x250?text=After"
+                                alt="After"
+                            />
+                        </div>
+                        <div
+                            class="scroller"
+                            aria-label="Before/After slider"
+                            tabindex="0"
+                        >
+                            <span class="arrows" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-right">
+                    <h3>Gartenpflege</h3>
+                    <div class="service-desc">
+                        <ul class="features">
+                            <li>
+                                Bodenpflege und Vorbereitung sowie Rasenpflege
+                            </li>
+                            <li>Saisonale Gartenpflege</li>
+                            <li>Pflanzung und Pflege von Beeten</li>
+                            <li>Wege und Terrassen reinigen</li>
+                            <li>Rankhilfen und Zäune setzen</li>
+                        </ul>
+                        <p class="price"><em>Preis basiert auf Anfrage</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-right">
+                    <h3>Hecken- und Strauchschnitt</h3>
+                    <div class="service-desc">
+                        <ul class="features">
+                            <li>Kleine Gartenarbeiten</li>
+                            <li>Zurückschneiden von Gehölz und Sträuchern</li>
+                            <li>Form- und Pflegeschnitte</li>
+                            <li>Grünschnitt-Entsorgung</li>
+                            <li>Keine Baumfällungen</li>
+                        </ul>
+                        <p class="price"><em>Preis basiert auf Anfrage</em></p>
+                    </div>
+                </div>
+                <div class="imges">
+                    <div class="wrapper">
+                        <img
+                            src="https://placehold.co/400x250?text=Before"
+                            alt="Before"
+                            class="before"
+                        />
+                        <div class="after">
+                            <img
+                                src="https://placehold.co/400x250?text=After"
+                                alt="After"
+                            />
+                        </div>
+                        <div
+                            class="scroller"
+                            aria-label="Before/After slider"
+                            tabindex="0"
+                        >
+                            <span class="arrows" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service">
+                <div class="imges">
+                    <div class="wrapper">
+                        <img
+                            src="https://placehold.co/400x250?text=Before"
+                            alt="Before"
+                            class="before"
+                        />
+                        <div class="after">
+                            <img
+                                src="https://placehold.co/400x250?text=After"
+                                alt="After"
+                            />
+                        </div>
+                        <div
+                            class="scroller"
+                            aria-label="Before/After slider"
+                            tabindex="0"
+                        >
+                            <span class="arrows" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-right">
+                    <h3>Streu- und Schneeräumarbeiten</h3>
+                    <div class="service-desc">
+                        <ul class="features">
+                            <li>Schneefräseinsätze</li>
+                            <li>Manuelle Räumung und Gehwegreinigung</li>
+                            <li>Streuen von Auftaumitteln</li>
+                            <li>Einsatz von Split und Sand</li>
+                        </ul>
+                        <p class="price"><em>Preis basiert auf Anfrage</em></p>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="about" id="about">
@@ -85,5 +201,156 @@
                 <img src="https://placehold.co/200" alt="" />
             </div>
         </section>
+        <section id="contact">
+            <h1>Setzen Sie sich gern mit uns in Verbindung!</h1>
+            <form
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                class="email-form"
+            >
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="628df5ab-ed15-4f31-8f92-425aad3404e5"
+                />
+                <label>Vor- und Nachname</label>
+                <input
+                    type="text"
+                    name="name"
+                    required=""
+                    placeholder="Name"
+                    id="name"
+                />
+                <label>Ihre Email-Adresse</label>
+                <input
+                    type="email"
+                    name="email"
+                    required=""
+                    placeholder="Email"
+                    id="email"
+                />
+                <label>Nachricht</label>
+                <textarea
+                    name="message"
+                    required=""
+                    placeholder="Nachricht"
+                    id="message"
+                ></textarea>
+                <input
+                    type="checkbox"
+                    name="botcheck"
+                    class="hidden"
+                    style="display: none"
+                />
+
+                <div class="form-actions-row">
+                    <button
+                        type="submit"
+                        id="submit-btn"
+                        class="btn btn-primary"
+                        disabled
+                    >
+                        Senden
+                    </button>
+                    <button
+                        type="reset"
+                        class="btn btn-secondary"
+                        id="resetbtn"
+                    >
+                        Zurücksetzen
+                    </button>
+                </div>
+
+                <p class="form-note" id="form-note" aria-live="polite"></p>
+
+                <div class="datenschutz-container">
+                    <input
+                        type="checkbox"
+                        id="datenschutz"
+                        name="datenschutz"
+                    />
+                    <label for="datenschutz"
+                        >Ich akzeptiere die
+                        <a href="/impressum/impressum.html" target="_blank"
+                            >Datenschutzrichtlinien</a
+                        >.</label
+                    >
+                </div>
+            </form>
+        </section>
+        <footer aria-label="Seiten-Footer">
+            <div class="footer-inner">
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h3>ERZProvide Hausservice</h3>
+                        <p>
+                            Zuverlässiger Haus- & Gartenservice im Erzgebirge.
+                            Wir erledigen Gartenpflege, Reinigung und
+                            Winterdienste für Privat- und Geschäftskunden.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Kontakt</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                Telefon:
+                                <a href="tel:+491729813856">+49 172 9813856</a>
+                            </li>
+                            <li>
+                                E‑Mail:
+                                <a
+                                    href="mailto:erzprovide-hausservice@outlook.de"
+                                    >erzprovide-hausservice@outlook.de</a
+                                >
+                            </li>
+                            <li>
+                                Adresse: Hauptstraße 37, 09456 Annaberg-Buchholz
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Schnellzugriff</h4>
+                        <ul class="footer-links">
+                            <li><a href="#services">Dienstleistungen</a></li>
+                            <li><a href="#about">Über uns</a></li>
+                            <li><a href="#contact">Kontakt</a></li>
+                            <li>
+                                <a href="/impressum/impressum.html"
+                                    >Impressum</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col socials">
+                        <h4>Folgen Sie uns</h4>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram"
+                                ><img
+                                    src="/src/instagram-brands-solid-full.svg"
+                                    alt="Instagram"
+                            /></a>
+                            <a href="tel:+491729813856" aria-label="WhatsApp"
+                                ><img
+                                    src="/src/whatsapp-brands-solid-full.svg"
+                                    alt="WhatsApp"
+                            /></a>
+                            <a href="#" aria-label="Facebook"
+                                ><img
+                                    src="/src/facebook-brands-solid-full.svg"
+                                    alt="Facebook"
+                            /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        © <span id="year"></span> ERZProvide — Alle Rechte
+                        vorbehalten. &nbsp;
+                        <a href="/impressum/impressum.html">Impressum</a> •
+                        <a href="/impressum/impressum.html/">Datenschutz</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

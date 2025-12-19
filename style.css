@@ -13,8 +13,8 @@
     --font-serif: "Source Serif", Georgia, serif;
     --text-light: #f0f0f0;
     --text-dark: #1a1a1a;
-    --primary-color: #ff8800;
-    --secondary-color: #008f2b;
+    --primary-color: #ff8800; /* #ff8800 */
+    --secondary-color: #008f2b; /* #008f2b */
     --background-color: #ffffff;
 }
 
@@ -54,12 +54,8 @@ nav.scrolled {
 }
 
 nav img {
-    height: 60%;
+    height: 80%;
     cursor: pointer;
-}
-
-nav.scrolled img {
-    height: 50%;
 }
 
 nav ul {
@@ -110,31 +106,68 @@ nav button:hover {
 
 section {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh; /* allow sections to grow if content exceeds viewport */
     background-color: var(--background-color);
 }
 
 .landing {
+    position: relative;
     background: url(src/bg_3.jpg) center/cover no-repeat;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding-left: 5%;
     color: var(--text-light);
+    overflow: hidden;
+}
+
+/* darker overlay so hero text is readable */
+.landing::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.1));
+    z-index: 0;
 }
 
 .landing h1 {
+    position: relative;
+    z-index: 1;
     font-family: var(--font-serif);
     font-size: 5rem;
     margin-bottom: 2vh;
     font-style: italic;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: slideUp 0.7s cubic-bezier(0.2, 0.9, 0.2, 1) 0.12s forwards;
 }
 
 .landing h2 {
+    position: relative;
+    z-index: 1;
     font-size: 2rem;
     margin-bottom: 1.5vh;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: slideUp 0.7s cubic-bezier(0.2, 0.9, 0.2, 1) 0.28s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .landing h1,
+    .landing h2 {
+        animation: none;
+        transform: none;
+        opacity: 1;
+    }
 }
 
 .landing button {
@@ -148,6 +181,7 @@ section {
     font-weight: bold;
     font-size: 1.4rem;
     cursor: pointer;
+    z-index: 1;
     transition: all 0.3s;
 }
 
@@ -161,6 +195,7 @@ section {
     display: flex;
     gap: 20px;
     padding-left: 0.5vw;
+    z-index: 1;
 }
 
 .landing div a img {
@@ -173,6 +208,75 @@ section {
 .landing div a img:hover {
     transform: scale(1.1);
     transition: transform 0.3s;
+}
+
+.services {
+    height: 150vh;
+    padding: 10% 0 0 5%;
+}
+
+.services h2 {
+    font-size: 3rem;
+    margin-bottom: 5vh;
+    color: var(--text-dark);
+    font-family: var(--font-serif);
+}
+
+.services .service {
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+    margin-bottom: 7vh;
+}
+
+/* Features list in service descriptions */
+.service-right .service-desc {
+    padding-top: 0.6rem;
+}
+
+.service-right .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.service-right .features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 6px 0;
+    color: var(--text-dark);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.service-right .features li::before {
+    content: "";
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    border-radius: 4px;
+    background: var(--primary-color);
+    /* use mask to show a white check mark */
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M20.285 6.709l-11.025 11.025-5.545-5.545 1.414-1.414 4.131 4.131 9.611-9.611z'/></svg>");
+    -webkit-mask-size: 12px 12px;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M20.285 6.709l-11.025 11.025-5.545-5.545 1.414-1.414 4.131 4.131 9.611-9.611z'/></svg>");
+    mask-size: 12px 12px;
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+
+.service-right .price {
+    margin: 0;
+    color: #666;
+    font-style: italic;
+    margin-top: 6px;
+    font-size: 0.95rem;
 }
 
 .about {
@@ -209,4 +313,561 @@ section {
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 3.5px solid var(--primary-color);
+}
+
+/* Before / After slider styles */
+.imges {
+    width: 320px;
+    max-width: 40%;
+    display: flex; /* center image wrapper inside its column */
+    justify-content: center;
+    align-items: center;
+}
+
+.imges .wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 260px; /* fixed visual height so text can be smaller than image */
+    margin: 0 auto; /* ensure centered in the column */
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+.imges img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* keep cover ratio while fixed height */
+}
+
+/* Ensure text column is smaller vertically than the image and aligns to top */
+.service-right {
+    align-self: flex-start; /* top align beside the image */
+    max-width: 55%;
+}
+
+.service-right .service-desc {
+    max-height: 220px; /* slightly smaller than the image height */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Two-column layout with two items per column; 5th item spans full width */
+.service-right .features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+}
+
+.service-right .features li:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+.service-right .features li:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+}
+.service-right .features li:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1;
+}
+.service-right .features li:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+}
+.service-right .features li:nth-child(5) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+}
+
+/* Responsive: single column on smaller screens */
+@media (max-width: 900px) {
+    /* stack service blocks and center images on tablet/mobile */
+    .service {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        margin-bottom: 4.5vh;
+    }
+
+    .imges {
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imges .wrapper {
+        height: 220px;
+        max-width: 420px;
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    .service-right {
+        max-width: 100%;
+    }
+
+    .service-right .service-desc {
+        max-height: 200px;
+    }
+
+    .service-right .features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .imges .wrapper {
+        height: 200px;
+    }
+    .service-right {
+        max-width: 100%;
+    }
+    .service-right .service-desc {
+        max-height: none;
+        overflow: visible;
+    }
+    /* On phones: 2 equal columns for feature items so they distribute evenly */
+    .service-right .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem 1rem;
+    }
+
+    /* reset desktop-specific explicit placements so items flow naturally */
+    .service-right .features li {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* keep the 5th item spanning both columns for visual balance */
+    .service-right .features li:nth-child(5) {
+        grid-column: 1 / -1;
+    }
+
+    /* Center image and content columns on phones */
+    .service {
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+    }
+
+    .imges {
+        width: 100%;
+        max-width: 92%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imges .wrapper {
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+        height: 180px;
+    }
+
+    .service-right {
+        max-width: 100%;
+    }
+
+    .service-right .features li {
+        font-size: 0.85em;
+    }
+
+    .service-right .service-desc {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.imges .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* full-size layer; we'll clip it with clip-path */
+    height: 100%;
+    pointer-events: none;
+    clip-path: inset(0 50% 0 0); /* show left half by default */
+    transition: clip-path 0.06s linear;
+}
+
+.imges .after img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scroller {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 100%;
+    z-index: 10;
+    cursor: ew-resize;
+}
+
+.scroller .arrows {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    /* white chevrons only (no outline) */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24'><polyline points='16,4 6,12 16,20' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><polyline points='24,4 34,12 24,20' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+    pointer-events: none;
+    transition: transform 0.12s ease;
+    z-index: 3;
+}
+
+.scroller:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: calc(
+        50% + 20px
+    ); /* leave gap for the handle (half of total handle height ~20px) */
+    width: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+.scroller:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(50% + 20px);
+    bottom: 0;
+    width: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+.scroller.scrolling .arrows {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+@media (max-width: 900px) {
+    .imges {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .imges {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Scroll-in animations for service and about images */
+.imges .wrapper,
+.about .person img {
+    opacity: 0;
+    transform: translateX(0);
+    transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.5s ease;
+    will-change: transform, opacity;
+}
+
+/* About images slide in from right */
+.about .person img {
+    transform: translateX(40px);
+}
+
+/* When in view */
+.imges .wrapper.in-view,
+.about .person img.in-view {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .imges .wrapper,
+    .about .person img {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Footer styles */
+footer {
+    background: linear-gradient(180deg, #0f0f0f 0%, #0b0b0b 100%);
+    color: var(--text-light);
+    padding: 3.5rem 5%;
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.4rem;
+}
+.footer-col p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.footer-contact,
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-contact li,
+.footer-links li {
+    margin: 0.45rem 0;
+}
+.footer-links a,
+.footer-contact a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: var(--secondary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+}
+.social-icons a {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+.social-icons img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(1.1);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.9rem;
+}
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+}
+.footer-bottom a {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .footer-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .footer-cols {
+        grid-template-columns: 1fr;
+    }
+    footer {
+        padding: 2.25rem 4%;
+    }
+}
+
+/* Hide navbar on mobile/tablet (≤900px) */
+@media (max-width: 900px) {
+    * {
+        overflow-x: hidden;
+    }
+    nav {
+        display: none !important;
+    }
+    .landing h1 {
+        font-size: 2.5rem;
+    }
+    .landing h2 {
+        font-size: 1.3rem;
+        margin-bottom: 5vh;
+    }
+    .landing button {
+        width: 45vw;
+        font-size: 0.9rem;
+        margin-bottom: 2vh;
+    }
+    .services {
+        height: auto;
+        padding: 8% 5% 5% 5%;
+    }
+    .services h2 {
+        font-size: 2rem;
+        margin-bottom: 4vh;
+    }
+    .service {
+        flex-direction: column;
+        gap: 5vh;
+        margin-bottom: 5vh;
+    }
+    .service-right {
+        max-width: 100%;
+        margin-top: 5vh;
+    }
+    .about {
+        height: auto;
+    }
+    .about .person {
+        flex-direction: column;
+        gap: 5vh;
+        padding: 0 5%;
+        text-align: center;
+        height: 100%;
+        margin-bottom: 10vh;
+    }
+    .about .person img {
+        width: 60%;
+        height: auto;
+        box-shadow: none;
+    }
+    .contact {
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+    }
+}
+
+/* Email form styles using primary / secondary colors */
+.email-form {
+    max-width: 720px;
+    margin: 0.75rem auto;
+    display: grid;
+    gap: 0.6rem;
+    padding: 0 12px;
+}
+.email-form label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.email-form input[type="text"],
+.email-form input[type="email"],
+.email-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e4e4e4;
+    font-size: 1rem;
+}
+.email-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover:not([disabled]) {
+    filter: brightness(0.95);
+}
+.btn-primary[disabled] {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.datenschutz-container {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.95rem;
+}
+.datenschutz-container a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.form-note {
+    margin-top: 6px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    .form-actions-row {
+        flex-direction: column;
+    }
+}
+
+#contact {
+    padding-top: 10vh; /* reduced so section can fit without inner scrolling */
+    padding-bottom: 8vh;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#contact h1 {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    margin-bottom: 3.5rem; /* smaller gap to avoid overflow inside the section */
+    color: var(--text-dark);
+    text-align: center;
 }
