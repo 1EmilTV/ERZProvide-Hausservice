@@ -16,7 +16,7 @@ sliders.forEach((wrapper) => {
     const after = wrapper.querySelector(".after");
     let active = false;
 
-    let currentPercent = 50;
+    let currentPercent = 20;
 
     function setPosition(x) {
         const rect = wrapper.getBoundingClientRect();
@@ -83,15 +83,15 @@ sliders.forEach((wrapper) => {
     );
     scroller.addEventListener("touchstart", start, { passive: false });
 
-    // initialize to middle
+    // initialize to 20% from left
     window.addEventListener("load", function () {
         const rect = wrapper.getBoundingClientRect();
-        setPosition(rect.width / 2);
+        setPosition(rect.width * 0.2);
     });
 
     // ensure it also initializes if images are cached (in case load fired earlier)
     const rect = wrapper.getBoundingClientRect();
-    if (rect.width) setPosition(rect.width / 2);
+    if (rect.width) setPosition(rect.width * 0.2);
 });
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -211,8 +211,9 @@ section {
 }
 
 .services {
-    height: 150vh;
-    padding: 10% 0 0 5%;
+    width: 100%;
+    min-height: 100vh;
+    padding: 6% 5% 0 5%; /* use left and right padding so services use full width */
 }
 
 .services h2 {
@@ -317,8 +318,10 @@ section {
 
 /* Before / After slider styles */
 .imges {
-    width: 320px;
-    max-width: 40%;
+    /* use about half the row on desktop so services occupy full width */
+    flex: 0 0 48%;
+    width: 48%;
+    max-width: 48%;
     display: flex; /* center image wrapper inside its column */
     justify-content: center;
     align-items: center;
@@ -327,13 +330,23 @@ section {
 .imges .wrapper {
     position: relative;
     width: 100%;
-    max-width: 320px;
-    height: 260px; /* fixed visual height so text can be smaller than image */
+    max-width: 920px;
+    /* use aspect-ratio so the slider scales with width but stays taller on desktop */
+    aspect-ratio: 16 / 9;
+    min-height: 320px; /* ensures sufficient height on wide screens */
     margin: 0 auto; /* ensure centered in the column */
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     touch-action: none;
+}
+
+/* Larger desktops: make sliders even taller */
+@media (min-width: 1200px) {
+    .imges .wrapper {
+        min-height: 420px;
+        aspect-ratio: 16 / 8.5;
+    }
 }
 
 .imges img {
@@ -345,8 +358,8 @@ section {
 
 /* Ensure text column is smaller vertically than the image and aligns to top */
 .service-right {
-    align-self: flex-start; /* top align beside the image */
-    max-width: 55%;
+    flex: 1 1 52%;
+    max-width: 52%;
 }
 
 .service-right .service-desc {
@@ -498,7 +511,7 @@ section {
     width: 100%; /* full-size layer; we'll clip it with clip-path */
     height: 100%;
     pointer-events: none;
-    clip-path: inset(0 50% 0 0); /* show left half by default */
+    clip-path: inset(0 80% 0 0); /* show left 20% by default (20% reveal) */
     transition: clip-path 0.06s linear;
 }
 
@@ -514,7 +527,7 @@ section {
 .scroller {
     position: absolute;
     top: 0;
-    left: calc(50% - 12px);
+    left: calc(20% - 12px); /* default handle at 20% */
     width: 24px;
     height: 100%;
     z-index: 10;
