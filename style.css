@@ -502,6 +502,15 @@ section {
         max-height: none;
         overflow: visible;
     }
+
+    /* Ensure mobile stacks show text before images: put images below headers */
+    .service .service-right {
+        order: 1;
+    }
+
+    .service .imges {
+        order: 2;
+    }
 }
 
 .imges .after {
@@ -603,7 +612,9 @@ section {
 .about .person img {
     opacity: 0;
     transform: translateX(0);
-    transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.5s ease;
+    transition:
+        transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1),
+        opacity 0.5s ease;
     will-change: transform, opacity;
 }
 
